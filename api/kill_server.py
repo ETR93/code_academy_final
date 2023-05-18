@@ -1,7 +1,4 @@
-import os
 import time
-import signal
-import subprocess
 
 import psutil as psutil
 import pyuac
