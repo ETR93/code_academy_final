@@ -4,6 +4,7 @@ from .models import PostResults
 from .serializers import ResultsSerializer
 from .helpers import get_league_data, calculate_koef, get_scheduled_games, calculate_potencial_result
 import datetime
+import requests
 from .testing_data import *
 
 
@@ -29,5 +30,5 @@ class Results(generics.ListCreateAPIView):
                             away_teams_avarage_defence=self.final_data['away_teams_avarage_defence'],
                             attack_strength=self.final_data['attack_strength'],
                             defence_strength=self.final_data['defence_strength'],
-                            games_results=self.final_data['games_results']
+                            games_results=self.final_data['potencial_results']
                         )
