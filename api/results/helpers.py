@@ -99,7 +99,3 @@ def calculate_potencial_result(games_list, results):
         ] * results['away_league_avarage_offence'], 0)
         results['potencial_results'][' vs '.join([game[0], game[1]])] = {potencial_result_home: potencial_result_away}
     return results
-
-
-# def send_post_request():
-#     requests.post(APP_URL, data={"title": "send_request"})
