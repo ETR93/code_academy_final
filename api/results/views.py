@@ -4,7 +4,6 @@ from .models import PostResults
 from .serializers import ResultsSerializer
 from .helpers import get_league_data, calculate_koef, get_scheduled_games, calculate_potencial_result
 import datetime
-import requests
 from .testing_data import *
 
 

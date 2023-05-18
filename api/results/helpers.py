@@ -11,6 +11,7 @@ TEAMS_NAMES_XPATH = "//table[@class='table']//tbody//tr//td//a//text()"
 LEAGUE_AVERAGE = "//table[@class='table']//tbody//tr//td[not(@class)]//text()"
 SCHEDULE_URL = "https://www.euroleaguebasketball.net/euroleague/game-center/"
 SCHEDULED_GAMES_XPATH = "//span[contains(@class, 'visually-hidden_wrap__1CCX0') and contains(text(),'game')]//text()"
+APP_URL = "http://127.0.0.1:8000/posts_results"
 
 
 def get_league_data():
@@ -98,3 +99,7 @@ def calculate_potencial_result(games_list, results):
         ] * results['away_league_avarage_offence'], 0)
         results['potencial_results'][' vs '.join([game[0], game[1]])] = {potencial_result_home: potencial_result_away}
     return results
+
+
+# def send_post_request():
+#     requests.post(APP_URL, data={"title": "send_request"})

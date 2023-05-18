@@ -1,14 +1,11 @@
 import time
+import requests
 
-import psutil as psutil
-import pyuac
+
+def send_post_request():
+    requests.post("http://127.0.0.1:8000/posts_results", data={"title": "send_request"})
+
 
 while True:
-    for proc in psutil.process_iter():
-        if proc.name() == "python.exe":
-            if not pyuac.isUserAdmin():
-                print("Re-launching as admin!")
-                pyuac.runAsAdmin()
-                proc.kill()
-                break
-    time.sleep(10) # Time needed for restart
+    send_post_request()
+    time.sleep(3) # time till restart every x seconds
