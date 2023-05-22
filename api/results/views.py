@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import PostResults
-from .serializers import ResultsSerializer
+from .serializers import ResultsSerializer, GetResultsSerializer
 from .helpers import get_league_data, calculate_koef, get_scheduled_games, calculate_potencial_result
 import datetime
 from .testing_data import *
@@ -31,3 +31,8 @@ class Results(generics.ListCreateAPIView):
                             defence_strength=self.final_data['defence_strength'],
                             games_results=self.final_data['potencial_results']
                         )
+
+
+class GetResults(generics.ListAPIView):
+    queryset = PostResults.objects.all()[:1]
+    serializer_class = GetResultsSerializer
