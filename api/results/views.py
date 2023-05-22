@@ -3,7 +3,11 @@ from rest_framework import generics, permissions
 from .models import PostResults
 from .serializers import ResultsSerializer, GetResultsSerializer
 from .helpers import get_league_data, calculate_koef, get_scheduled_games, calculate_potencial_result
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 import datetime
+import os
 from .testing_data import *
 
 
@@ -33,6 +37,21 @@ class Results(generics.ListCreateAPIView):
                         )
 
 
-class GetResults(generics.ListAPIView):
-    queryset = PostResults.objects.all()[:1]
-    serializer_class = GetResultsSerializer
+class GetResults(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'templates/get_results.html'
+    data = {}
+
+    def get(self, request):
+        queryset = PostResults.objects.all()[:1]
+        for row in queryset:
+            for game in row.games_results:
+                self.data[game] = {}
+                self.data[game] = {
+                    'game': game,
+                    'scores': row.games_results[game],
+                    'last_read_date': row.last_read_date
+                }
+
+        serializer_class = GetResultsSerializer
+        return Response({'serializer': serializer_class, 'data': self.data})

@@ -14,4 +14,4 @@ class ResultsSerializer(serializers.ModelSerializer):
 class GetResultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostResults
-        fields = ['games_results']
+        fields = ['games_results', 'last_read_date']
