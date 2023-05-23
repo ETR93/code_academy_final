@@ -16,4 +16,5 @@ body {
     margin-bottom: 50%;
     text-align: center;
     min-width: 180px;
+    background-image: url("background.jpg");
 }
