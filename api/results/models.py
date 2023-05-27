@@ -16,3 +16,7 @@ class PostResults(models.Model):
     attack_strength = models.JSONField(default=None)
     defence_strength = models.JSONField(default=None)
     games_results = models.JSONField(default=None)
+
+
+class TeamsStatsAverage(models.Model):
+    pass

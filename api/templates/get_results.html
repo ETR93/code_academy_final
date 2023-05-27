@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 {% load rest_framework %}
 {% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+</head>
 
-<html lang="en">
-    {% for key, value in data.items %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
-        <h1>
-            Game card
-        </h1>
-        {% for m, n in value.items %}
-            <body>
+<body>
+    <div class="games_cards">
+        {% for key, value in data.items %}
+            <h1>
+                Game card
+            </h1>
+            {% for m, n in value.items %}
                 <div>
                     <h4> {{ m }}: {{ n }}</h4>
                 </div>
-            </body>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-</html>
+        <h1> Teams average stats </h1>
+        <table>
+              <tr>
+                  {% for team in teams %}
+                    <th>{{ team }}</th>
+                  {% endfor %}
+              </tr>
+              <tr>
+                  {% for stat in home_league_avarage %}
+                    <td> {{ stat }}</td>
+                  {% endfor %}
+              </tr>
+              <tr>
+                  {% for stat in away_teams_average_defence %}
+                    <td>{{ stat }}</td>
+                  {% endfor %}
+              </tr>
+        </table>
+        <h1>
+            Leagues average stats
+        </h1>
+        {% for key, stat in leagues_average_stats.items %}
+            <div>
+                <h4> {{ key }}: {{ stat }}</h4>
+            </div>
+        {% endfor %}
+    </div>
+ </body>

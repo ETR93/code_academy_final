@@ -8,4 +8,4 @@ def send_post_request():
 
 while True:
     send_post_request()
-    time.sleep(3) # time till restart every x seconds
+    time.sleep(3600) # time till restart every x seconds

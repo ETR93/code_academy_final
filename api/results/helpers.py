@@ -99,3 +99,13 @@ def calculate_potencial_result(games_list, results):
         ] * results['away_league_avarage_offence'], 0)
         results['potencial_results'][' vs '.join([game[0], game[1]])] = {potencial_result_home: potencial_result_away}
     return results
+
+
+def parse_game_attack_defence_strength(row, game):
+    game_strengths = {}
+    teams_list_in_game = game.split(" vs ")
+    for team in row:
+        if team in teams_list_in_game:
+            game_strengths.update({team: row[team]})
+
+    return game_strengths
