@@ -48,9 +48,8 @@ class GetResults(APIView):
     leagues_average_stats = {}
 
     def get(self, request):
-        queryset = PostResults.objects.all()[:1]
+        queryset = PostResults.objects.order_by('-id')[:1]
         for row in queryset:
-            print(row.attack_strength, row.defence_strength)
             for game in row.games_results:
                 self.data[game] = {}
                 self.data[game] = {
